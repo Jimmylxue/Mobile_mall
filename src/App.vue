@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <router-view>132456</router-view>
-    <footer v-show="share_show" >
+    <footer v-show="tabState" >
       <van-tabbar v-model="active">
-        <van-tabbar-item icon="home-o">标签a</van-tabbar-item>
-        <van-tabbar-item icon="search">标签</van-tabbar-item>
-        <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+        <van-tabbar-item to="/home" icon="bag-o">首页</van-tabbar-item>
+        <van-tabbar-item to="/cart" badge="5" icon="shopping-cart-o">购物车</van-tabbar-item>
+        <van-tabbar-item to="/Community" icon="friends-o">社群</van-tabbar-item>
+        <van-tabbar-item icon="diamond-o">会员商城</van-tabbar-item>
+        <van-tabbar-item dot icon="manager-o">我的</van-tabbar-item>
       </van-tabbar>
     </footer>
   </div>
@@ -14,7 +15,7 @@
 
 <script>
 // import footbar from '@/components/public/footBar'
-// import {mapState} from 'vuex'
+import {mapMutations,mapState} from 'vuex'
 export default {
   // components:{
   //   footbar
@@ -26,17 +27,21 @@ export default {
     }
   },
   computed:{
-    // ...mapState([])
+    ...mapState(['tabState'])
+  },
+  watch:{
+    $route(to){
+      if(to.meta.tab){
+        this.changeTabState(to.meta.tab)
+        return
+      }
+      this.changeTabState(false)
+    }
   },
   mounted(){
-    console.log(this.router)
-    console.log('555',this.$route.meta.tab)
-    this.share_show = this.$route.meta.tab
   },
   methods:{
-    tohome(){
-      this.$router.push('/home')
-    }
+    ...mapMutations(['changeTabState'])
   }
 }
 </script>
@@ -46,8 +51,9 @@ export default {
     width: 100%;
     height: 100vh;
     background-color: antiquewhite;
-    padding-bottom: 60px;
+    // padding-bottom: 60px;
     position: relative;
+    font-size: 14px;
   }
   footer{
     position: fixed;

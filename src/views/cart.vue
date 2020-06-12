@@ -5,10 +5,19 @@
 </template>
 
 <script>
+
 export default {
+    data(){
+        return {
+
+        }
+    },
+    computed:{
+    },
     mounted(){
-        this.$router.history
-        console.log('hhhh',this.$route.meta.tab)
+    },
+    methods:{
+
     }
 }
 </script>

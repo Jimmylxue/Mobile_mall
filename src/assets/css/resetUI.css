@@ -9,3 +9,16 @@ ul{
 #app .van-hairline--top-bottom{
     position: fixed;
 }
+
+.goodDetail .van-icon-arrow-left{
+    color: rgb(247,160,160);
+    font-size: 22px;
+}
+.goodDetail .van-swipe-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.goodDetail .van-icon{
+    font-size: 18px;
+}
